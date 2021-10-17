@@ -1,5 +1,5 @@
-# ---------- Hangeul Subtitle Converter ----------
-*** Created By : Garry Ariel ***
+# Hangeul Subtitle Converter
+***Created By : Garry Ariel***
 
 # Description
 The aim of this project is to create a website which will display youtube videos with Korean Romanization subtitle by replacing existing Hangeul subtitle. This will work as follows.
@@ -10,8 +10,8 @@ The aim of this project is to create a website which will display youtube videos
 
 # Technology Stack
 This project use Django framework and two main modules, which are:
-1. [Youtube Transcript API] (https://pypi.org/project/youtube-transcript-api/)
-2. [Hangeul to Korean Romanization Converter] (https://github.com/osori/korean-romanizer)
+1. Youtube Transcript API (https://pypi.org/project/youtube-transcript-api/)
+2. Hangeul to Korean Romanization Converter (https://github.com/osori/korean-romanizer)
 
 # TODO List
 1. Create a function to download the subtitle.
