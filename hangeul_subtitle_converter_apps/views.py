@@ -5,6 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Import youtube API
 from youtube_transcript_api import YouTubeTranscriptApi
 
+# Import converter module
+from korean_romanizer.romanizer import Romanizer
+
 # Import other needed modules
 from urllib.parse import urlparse, parse_qs
 
@@ -73,3 +76,14 @@ def get_transcript(url):
     response['status'] = 'FAILED'
     response['message'] = 'The video with ID ' + vid_id + ' doesn\'t have Hangeul subtitle'
     return response
+
+"""
+Following function will convert Hangeul subtitle into Korean Romanization subtitle.
+It takes detail field from get_transacipt function's response.
+"""
+def hangeul_to_romanization(transcript):
+  # Convert each text in the list
+  for sub in transcript:
+    sub['text'] = Romanizer(sub['text']).romanize()
+  
+  return transcript
