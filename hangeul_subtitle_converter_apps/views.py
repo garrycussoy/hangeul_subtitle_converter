@@ -79,7 +79,7 @@ def get_transcript(url):
 
 """
 Following function will convert Hangeul subtitle into Korean Romanization subtitle.
-It takes detail field from get_transacipt function's response.
+It takes detail field from get_transcript function's response.
 """
 def hangeul_to_romanization(transcript):
   # Convert each text in the list
@@ -87,3 +87,38 @@ def hangeul_to_romanization(transcript):
     sub['text'] = Romanizer(sub['text']).romanize()
   
   return transcript
+
+"""
+Following function will format the detail field from get_transcript function. The format can be chosen from the following (pass it as method argument).
+1. This will return the list as is.
+2. Remove duration field, and replace it by end field. End field can be obtained by the sum of start + duration, and round it into two decimal places.
+3. Same with method 2, but round start and end values into one decimal place.
+The default value would be 1.
+"""
+def transform_detail(detail, method = 1):
+  # Split the logic based on method chosen
+  if method == 1:
+    return detail
+  elif method == 2:
+    new_detail = []
+    for sub in detail:
+      new_sub = {
+        'text': sub['text'],
+        'start': sub['start'],
+        'end': round(sub['start'] + sub['duration'] - 0.01, 2) # We need to subtract 0.01 to avoid overlapping subtitle
+      }
+      new_detail.append(new_sub)
+    return new_detail
+  elif method == 3:
+    new_detail = []
+    for sub in detail:
+      new_sub = {
+        'text': sub['text'],
+        'start': round(sub['start'], 1),
+        'end': round(sub['start'] + sub['duration'] - 0.1, 1) # We need to subtract 0.1 to avoid overlapping subtitle
+      }
+      new_detail.append(new_sub)
+    return new_detail
+  
+  # Case when method doesn't match any of above options (return as is)
+  return detail
