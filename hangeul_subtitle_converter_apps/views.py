@@ -12,6 +12,12 @@ from korean_romanizer.romanizer import Romanizer
 from urllib.parse import urlparse, parse_qs
 
 """
+Index function to render index page
+"""
+def index(request):
+  return render(request, 'index.html')
+
+"""
 Following function will take youtube video URL and extract the video ID from it.
 If it's not in full format, then this function will return the string as is (assuming that user pass in an video ID instead of full URL).
 """
@@ -122,3 +128,23 @@ def transform_detail(detail, method = 1):
   
   # Case when method doesn't match any of above options (return as is)
   return detail
+
+"""
+Following function is the main function that will fetch and convert the subtitle.
+This function will also handle the logic when error occured.
+"""
+def fetch_and_convert(request):
+  # Get youtube URL
+  yt_url = request.POST['yt_url']
+
+  # Fetch subtitle
+  transcript = get_transcript(yt_url)
+  if transcript['status'] == 'FAILED':
+    return transcript
+  
+  # Convert subtitle and format the detail
+  transcript['detail'] = hangeul_to_romanization(transcript['detail'])
+  transcript['detail'] = transform_detail(transcript['detail'], 3)
+
+  # Render main page
+  return render(request, 'mainPage.html', transcript)

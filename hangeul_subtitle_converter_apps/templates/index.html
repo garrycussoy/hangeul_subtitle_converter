@@ -1,0 +1,12 @@
+<!-- Just an example, need to be developed later -->
+<html>
+  <head></head>
+  <body>
+    <!-- Simple form to input youtube video URL -->
+    <form method="POST" action="{% url 'hangeul_subtitle_converter_apps:fetch_and_convert' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" id="yt_url" name="yt_url">
+      <input type="submit">
+    </form>
+  </body>
+</html>

@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'hangeul_subtitle_converter_apps.apps.HangeulSubtitleConverterConfig'
 ]
 
 MIDDLEWARE = [
