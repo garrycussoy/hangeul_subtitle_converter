@@ -151,8 +151,9 @@ footer {
 }
 
 .index-watch-now-btn {
-  width: 40%;
+  min-width: 40%;
   min-height: 45px;
+  padding: 0 50px;
   border: none;
   border-radius: 25px;
   font-weight: 600;
@@ -161,4 +162,39 @@ footer {
 
 .index-watch-now-btn:hover {
   background-color: #DA7F8F;
+}
+
+/* -------------------------------------------------------------- */
+/* This is the responsive part */
+/* -------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* ---------- Header ---------- */
+  .header-logo-ver-cont {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 130px);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .header-nav-ver-cont {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 112.5px);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .header-nav-ver-cont ul {
+    width: 225px;
+  }
+
+  /* ---------- Index Page ---------- */
+  .index-left-main-container {
+    padding: 50px 50px 0 50px;
+  }
+
+  .index-right-main-container {
+    padding: 0 50px 50px 50px;
+  }
 }
