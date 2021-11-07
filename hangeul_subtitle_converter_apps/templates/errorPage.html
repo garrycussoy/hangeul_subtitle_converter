@@ -41,44 +41,18 @@
       </div>
     </header>
 
-    <!-- Main part of this page -->
-    <div class="container-fluid main-main-container">
+    <!-- Main section of error page -->
+    <div class="container-fluid">
       <div class="row">
-        <!-- Empty left side -->
         <div class="col-md-2 col-12"></div>
-
-        <!-- Mid section -->
-        <div class="col-md-8 col-12">
-          <!-- Embed youtube -->
-          <div class="main-yt-container">
-            <iframe id="youtubePlayer" frameborder="0" src="{{ embed_url }}"></iframe>
-            <div class="main-subtitle">
-              <p>
-                Place the subtitle here
-              </p>
-            </div>
+        <div class="col-md-8 col-12 error-main-container">
+          <div class="error-message">
+            {{ message }}
           </div>
-
-          <!-- Next video -->
-          <div class="main-next-naration">
-            Ready to watch next video? Just put the URL / video ID below &#128522;
-          </div>
-          <form method="POST" action="{% url 'hangeul_subtitle_converter_apps:fetch_and_convert' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-md-8 col-12">
-                <input type="text" id="yt_url" name="yt_url" class="main-input-box" placeholder="Ex: https://www.youtube.com/watch?v=CGnc553-ttg">
-              </div>
-              <div class="col-md-4 col-12">
-                <button type="submit" class="main-watch-now-btn btn btn-primary">
-                  Watch Now!
-                </button>
-              </div>
-            </div>
-          </form>
+          <a class="btn btn-primary error-go-home-btn" href="/">
+            Home
+          </a>
         </div>
-
-        <!-- Empty right side -->
         <div class="col-md-2 col-12"></div>
       </div>
     </div>
@@ -87,8 +61,5 @@
       <span class="footer-production">2021 PRODUCTION</span>
       <span class="footer-by">By Garry Ariel</span>
     </footer>
-
-    <!-- Script to show the subtitles -->
-    <script></script>
   </body>
 </html>

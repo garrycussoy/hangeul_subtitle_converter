@@ -221,6 +221,32 @@ footer {
   background-color: #DA7F8F;
 }
 
+/* ---------- Error Page ---------- */
+.error-main-container {
+  min-height: calc(100vh - 165px);
+  padding-top: 30vh;
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.error-message {
+  padding-bottom: 30px;
+}
+
+.error-go-home-btn {
+  width: 30%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.error-go-home-btn:hover {
+  background-color: #DA7F8F;
+}
+
 /* -------------------------------------------------------------- */
 /* This is the responsive part */
 /* -------------------------------------------------------------- */
@@ -228,7 +254,7 @@ footer {
   /* ---------- Header ---------- */
   .header-logo-ver-cont {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: calc(50% - 130px);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);

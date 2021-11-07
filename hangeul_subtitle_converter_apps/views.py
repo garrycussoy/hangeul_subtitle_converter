@@ -60,6 +60,12 @@ def get_transcript(url):
     'detail': []
   }
 
+  # Check whether URL is empty string or not
+  if url == '':
+    response['status'] = 'FAILED'
+    response['message'] = 'You didn\'t fill in the input box with URL / video ID.'
+    return response
+
   # Extract video ID
   vid_id = get_video_id(url)
 
@@ -68,19 +74,19 @@ def get_transcript(url):
     YouTubeTranscriptApi.list_transcripts(vid_id)
   except:
     response['status'] = 'FAILED'
-    response['message'] = 'The video with ID ' + vid_id + ' doesn\'t exist'
+    response['message'] = 'The video with ID ' + vid_id + ' doesn\'t exist.'
     return response
   
   # Try to fetch Hangeul subtitle
   try:
     transcript = YouTubeTranscriptApi.get_transcript(vid_id, languages = ['ko'])
     response['status'] = 'SUCCESS'
-    response['message'] = 'Success fetching Hangeul subtitle'
+    response['message'] = 'Success fetching Hangeul subtitle.'
     response['detail'] = transcript
     return response
   except:
     response['status'] = 'FAILED'
-    response['message'] = 'The video with ID ' + vid_id + ' doesn\'t have Hangeul subtitle'
+    response['message'] = 'The video with ID ' + vid_id + ' doesn\'t have Hangeul subtitle.'
     return response
 
 """
@@ -138,12 +144,20 @@ Following function is the main function that will do the following.
 """
 def fetch_and_convert(request):
   # Get youtube URL
-  yt_url = request.POST['yt_url']
+  try:
+    yt_url = request.POST['yt_url']
+  except:
+    # Render error page if yt_url value not found
+    response = {
+      'message': 'An error has occured! Go back to Home and fill in the input box again!'
+    }
+    return render(request, 'errorPage.html', response)
 
   # Fetch subtitle
   transcript = get_transcript(yt_url)
   if transcript['status'] == 'FAILED':
-    return transcript
+    # Render error page
+    return render(request, 'errorPage.html', transcript)
   
   # Convert subtitle and format the detail
   transcript['detail'] = hangeul_to_romanization(transcript['detail'])
