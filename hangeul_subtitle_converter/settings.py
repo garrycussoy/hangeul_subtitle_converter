@@ -106,3 +106,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'hangeul_subtitle_converter_apps/static')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Make less restrictive
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"

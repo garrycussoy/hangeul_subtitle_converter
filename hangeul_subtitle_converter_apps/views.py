@@ -130,8 +130,11 @@ def transform_detail(detail, method = 1):
   return detail
 
 """
-Following function is the main function that will fetch and convert the subtitle.
-This function will also handle the logic when error occured.
+Following function is the main function that will do the following.
+- Fetch Hangeul subtitle.
+- Convert it into Romanization version.
+- Prepare props to be rendered in main page.
+- Handling error.
 """
 def fetch_and_convert(request):
   # Get youtube URL
@@ -146,5 +149,11 @@ def fetch_and_convert(request):
   transcript['detail'] = hangeul_to_romanization(transcript['detail'])
   transcript['detail'] = transform_detail(transcript['detail'], 3)
 
+  # Prepare props to be rendered in main page
+  props = {
+    'transcript': transcript,
+    'embed_url': 'https://www.youtube.com/embed/' + get_video_id(yt_url) + '?controls=0&&cc_lang_pref=ko&cc_load_policy=1'
+  }
+
   # Render main page
-  return render(request, 'mainPage.html', transcript)
+  return render(request, 'mainPage.html', props)
