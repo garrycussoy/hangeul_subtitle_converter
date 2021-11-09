@@ -247,6 +247,46 @@ footer {
   background-color: #DA7F8F;
 }
 
+/* ---------- Contact Page ---------- */
+.contact-main-container {
+  padding: 50px 30px;
+  min-height: calc(100vh - 165px);
+}
+
+.contact-main-container h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #DA7F8F;
+}
+
+.contact-contact-text {
+  text-align: justify;
+}
+
+.contact-media-container {
+  margin-bottom: 5px;
+  padding: 0 15px;
+  font-weight: 600;
+}
+
+.contact-row-img-container {
+  padding: 0 15px;
+}
+
+.contact-img-container {
+  padding: 0;
+}
+
+.contact-media-container img {
+  width: 100%;
+  max-width: 35px;
+}
+
+.contact-account {
+  display: flex;
+  align-items: center;
+}
+
 /* -------------------------------------------------------------- */
 /* This is the responsive part */
 /* -------------------------------------------------------------- */

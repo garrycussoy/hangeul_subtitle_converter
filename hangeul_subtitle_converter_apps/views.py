@@ -18,6 +18,12 @@ def index(request):
   return render(request, 'index.html')
 
 """
+Function to render contact page
+"""
+def contact(request):
+  return render(request, 'contact.html')
+
+"""
 Following function will take youtube video URL and extract the video ID from it.
 If it's not in full format, then this function will return the string as is (assuming that user pass in an video ID instead of full URL).
 """

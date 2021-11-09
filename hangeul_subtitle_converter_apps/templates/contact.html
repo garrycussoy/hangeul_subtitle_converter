@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>
+      Hangeul Subtitle Converter
+    </title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- Logo -->
+          <div class="col-12 col-md-4 header-logo-container">
+            {% load static %}
+
+            <div class="header-logo-ver-cont">
+              <img class="header-logo-img" src="{% static 'images/header-logo.png' %}" alt="Hangeul Subtitle Converter Logo" />
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="col-12 col-md-8 header-nav-container">
+            <div class="header-nav-ver-cont">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link active-tab" href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main section of contact page -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-3"></div>
+        <div class="col-12 col-md-6 contact-main-container">
+          <h1>Contact</h1>
+          <p class="contact-contact-text">
+            If you have any questions or advice, or you find a bug or something that doesn't work normally, feel free to contact me on the following account.
+          </p>
+
+          <!-- Contact account -->
+          <div class="row">
+            <!-- Gmail -->
+            <div class="col-12 contact-media-container">
+              <div class="row contact-row-img-container">
+                <div class="col-1 contact-img-container">
+                  {% load static %}
+                  <img src="{% static 'images/gmail.png' %}" alt="Gmail" />
+                </div>
+                <div class="col-11 contact-account">
+                  <span>garryarielcussoy@gmail.com</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Github -->
+            <div class="col-12 contact-media-container">
+              <div class="row contact-row-img-container">
+                <div class="col-1 contact-img-container">
+                  {% load static %}
+                  <img src="{% static 'images/github.png' %}" alt="Github" />
+                </div>
+                <div class="col-11 contact-account">
+                  github.com/garrycussoy
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3"></div>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-production">2021 PRODUCTION</span>
+      <span class="footer-by">By Garry Ariel</span>
+    </footer>
+  </body>
+</html>
