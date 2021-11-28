@@ -51,11 +51,9 @@
         <div class="col-md-8 col-12">
           <!-- Embed youtube -->
           <div class="main-yt-container">
-            <iframe id="youtubePlayer" frameborder="0" src="{{ embed_url }}"></iframe>
+            <iframe id="youtubePlayer" frameborder="0" src="{{ embed_url }}" allow="autoplay"></iframe>
             <div class="main-subtitle">
-              <p>
-                Place the subtitle here
-              </p>
+              <p id="subtitleText"></p>
             </div>
           </div>
 
@@ -88,7 +86,84 @@
       <span class="footer-by">By Garry Ariel</span>
     </footer>
 
+    <!-- Create dummy script to store props from views.py -->
+    {{ transcript.detail|json_script:"transcript" }}
+
     <!-- Script to show the subtitles -->
-    <script></script>
+    <script>
+      // Load youtube IFrame API
+      let tag = document.createElement('script')
+      tag.src = 'https://www.youtube.com/iframe_api'
+      let firstScriptTag = document.getElementsByTagName('script')[0]
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+
+      // Function to display Romnization subtitle on the video
+      function showSubtitle() {
+        // Get subtitleText id tag and set to empty as default
+        const captionDiv = document.getElementById('subtitleText')
+        captionDiv.innerHTML = ''
+
+        // Get transcript data from views.py
+        const transcript = JSON.parse(document.getElementById('transcript').textContent)
+
+        // Show related subtitle in specific time
+        let timeTracker = 0
+        let transcriptIndex = 0
+        let activeStart = Math.round(transcript[transcriptIndex].start * 100)
+        let activeEnd = Math.round(transcript[transcriptIndex].end * 100)
+        let activeSub = transcript[transcriptIndex].text
+        const totalSubs = transcript.length
+        let timerId = setInterval(() => {
+          // Case when it is time to start new subtitle
+          if (timeTracker === activeStart) {
+            // Set new captions
+            captionDiv.innerHTML = activeSub
+          }
+
+          // Case when it is time to end a subtitle
+          if (timeTracker === activeEnd) {
+            // Set captions to empty
+            captionDiv.innerHTML = ''
+
+            // Set new active variables
+            transcriptIndex += 1
+            if (transcriptIndex < totalSubs) {
+              activeStart = Math.round(transcript[transcriptIndex].start * 100)
+              activeEnd = Math.round(transcript[transcriptIndex].end * 100)
+              activeSub = transcript[transcriptIndex].text
+            } else {
+              // Discard this interval
+              clearInterval(timerId)
+            }
+          }
+          
+          // Move forward timeTracker
+          timeTracker += 10
+        }, 100)
+      }
+
+      // Following function is used to call youtube IFrame API
+      let player
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubePlayer', {
+          playerVars: {
+            'playsinline': 1
+          },
+          events: {
+            // When loaded, it will automatically start the video and play related subtitle
+            'onReady': () => {
+              // Play the video
+              player.playVideo()
+
+              // Set subtitle, but delayed
+              setTimeout(() => {
+                player.setOption('captions', 'fontSize', -1)
+                showSubtitle()
+              }, 400)
+            }
+          }
+        })
+      }
+    </script>
   </body>
 </html>

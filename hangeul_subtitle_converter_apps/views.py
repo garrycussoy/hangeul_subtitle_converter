@@ -172,7 +172,7 @@ def fetch_and_convert(request):
   # Prepare props to be rendered in main page
   props = {
     'transcript': transcript,
-    'embed_url': 'https://www.youtube.com/embed/' + get_video_id(yt_url) + '?controls=0&&cc_lang_pref=ko&cc_load_policy=1'
+    'embed_url': 'https://www.youtube.com/embed/' + get_video_id(yt_url) + '?controls=0&&cc_lang_pref=ko&cc_load_policy=1&enablejsapi=1'
   }
 
   # Render main page
