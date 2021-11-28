@@ -181,17 +181,17 @@ footer {
 
 .main-subtitle {
   position: absolute;
-  bottom: -1%;
+  bottom: -3%;
   width: 100%;
 }
 
 .main-subtitle p {
-  display: inline-block;
   color: #FFFFFF;
   padding: 0.2vw 2vw;
   background-color: #000000;
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 1.6vw;
+  min-height: 7vh;
 }
 
 .main-next-naration {
@@ -324,5 +324,15 @@ footer {
   /* ---------- Main Page ---------- */
   .main-yt-container iframe {
     min-height: 50vw;
+  }
+
+  .main-subtitle {
+    position: absolute;
+    bottom: -7%;
+    width: 100%;
+  }
+
+  .main-subtitle p {
+    min-height: 5vh;
   }
 }

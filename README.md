@@ -17,6 +17,5 @@ This project use Django framework and two main modules, which are:
 1. [DONE] Create a function to download the subtitle.
 2. [DONE] Create a function to convert the subtitle.
 3. [DONE] Create UI for the website.
-4. Show the new subtitle on the video while user play it (user cannot pause or jump into random time while playing the video).
-5. User can pause or jump into any random of time while playing the video.
-6. Deploy it on Netlify and release version 1.0.0.
+4. [DONE] Show the new subtitle on the video while user play it (user cannot pause or jump into random time while playing the video).
+5. Deploy it on Heroku and release version 1.0.0.
