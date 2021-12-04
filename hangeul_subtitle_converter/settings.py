@@ -7,6 +7,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from pathlib import Path
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,6 +23,7 @@ SECRET_KEY = 's291hfc1ci2vc9023b0bc990c2b3bv2909b'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'hangeul-subtitle-project.herokuapp.com',
     '127.0.0.1'
 ]
 
@@ -32,7 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'hangeul_subtitle_converter_apps.apps.HangeulSubtitleConverterConfig'
 ]
 
 MIDDLEWARE = [
@@ -105,3 +108,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'hangeul_subtitle_converter_apps/static')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Make less restrictive
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
