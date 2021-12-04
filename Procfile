@@ -1,0 +1,1 @@
+web: gunicorn hangeul_subtitle_converter.wsgi --log-file -
